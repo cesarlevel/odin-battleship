@@ -63,7 +63,7 @@ export default class Gameboard {
         return success;
     }
 
-    get allShipDestroyed() {
+    get allShipsDestroyed() {
         return this.placedShips.every(({ship}) => ship.isSunk);
     }
 }

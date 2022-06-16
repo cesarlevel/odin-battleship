@@ -158,5 +158,5 @@ it('Checks that all ship were destroyed', () => {
     gameboard.receiveAttack([1, 1]);
     gameboard.receiveAttack([1, 2]);
 
-    expect(gameboard.allShipDestroyed).toBe(true);
+    expect(gameboard.allShipsDestroyed).toBe(true);
 });
