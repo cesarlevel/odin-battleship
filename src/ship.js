@@ -3,13 +3,14 @@ export default class Ship {
         this.length = length;
         this.shipArr = Array.from({length: this.length}, () => this.length);
         this.horizontal = true;
-        this.explotionChar = 'X';
         this.id = '';
     }
 
+    static explotionChar = 'X';
+
     hit(n) {
         if (this.shipArr[n] !== undefined) {
-            this.shipArr[n] = this.explotionChar;
+            this.shipArr[n] = Ship.explotionChar;
             return true;
         }
         return false;
@@ -28,6 +29,6 @@ export default class Ship {
     }
 
     get isSunk() {
-        return this.shipArr.every(item => item === this.explotionChar);
+        return this.shipArr.every(item => item === Ship.explotionChar);
     }
 }

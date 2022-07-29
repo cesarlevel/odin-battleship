@@ -138,7 +138,7 @@ it('Handles attack', () => {
     gameboard.placeShip(ship2, [4, 1]);
     expect(gameboard.receiveAttack([4, 0])).toBe(false);
     expect(gameboard.receiveAttack([4, 1])).toBe(true);
-    expect(gameboard.board[4][0]).toBe(gameboard.missAttacksChar);
+    expect(gameboard.board[4][0]).toBe(Gameboard.missAttacksChar);
     expect(gameboard.missAttacks.length).toBe(1);
 });
 

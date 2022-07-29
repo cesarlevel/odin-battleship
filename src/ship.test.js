@@ -13,7 +13,7 @@ it('Build the ship array', () => {
 it('Ship can get hit', () => {
     const ship = new Ship(4);
     ship.hit(2);
-    expect(ship.shipArr[2]).toBe(ship.explotionChar);
+    expect(ship.shipArr[2]).toBe(Ship.explotionChar);
 });
 
 it('Ship can not get hit', () => {

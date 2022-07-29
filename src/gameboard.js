@@ -1,13 +1,16 @@
+import Ship from './ship.js';
 export default class Gameboard {
     constructor() {
         this.boardLength = 10;
         this.board = Array.from({length: this.boardLength}, () => Array(this.boardLength).fill(0));
         this.missAttacks = [];
-        this.missAttacksChar = '*'
+        this.explotionChar = Ship.explotionChar;
         this.placedShips = [];
         this.alphaId = [...'abcdefghijklmnopqrstuvwxyz'];
         this.alphaCounter = 0;
     }
+
+    static missAttacksChar = '*';
 
     placeShip(ship, coords = [0, 0]) {
         const [row, col] = coords;
@@ -56,8 +59,10 @@ export default class Gameboard {
                 success = true;
             }
         });
-        if (!success) {
-            this.board[row][col] = this.missAttacksChar;
+        if (success) {
+            this.board[row][col] = this.explotionChar;
+        } else {
+            this.board[row][col] = Gameboard.missAttacksChar;
             this.missAttacks.push(coords);
         }
         return success;
