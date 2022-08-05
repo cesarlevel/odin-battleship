@@ -1,25 +1,5 @@
 import Enemy from './enemy';
 
-it('Returns if the players turn',  () => {
-    const enemy = new Enemy();
-
-    expect(enemy.hasTurn).toBe(false);
-});
-
-it('starts player\'s turn',  () => {
-    const enemy = new Enemy();
-    enemy.startsTurn();
-
-    expect(enemy.hasTurn).toBe(true);
-});
-
-it('ends player\'s turn',  () => {
-    const enemy = new Enemy();
-    enemy.endsTurn();
-
-    expect(enemy.hasTurn).toBe(false);
-});
-
 it('can randomly attack',  () => {
     const enemy = new Enemy();
     enemy.attack();

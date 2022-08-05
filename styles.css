@@ -17,12 +17,18 @@ body {
     box-sizing: border-box;
 }
 
+svg {
+    height: 0;
+    display: none;
+}
+
 #app {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: center;
     align-items: center;
+    filter: url(#hardBlur);
 }
 
 .title {
@@ -54,7 +60,6 @@ body {
     transition: all 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
     border: 1px solid var(--primary-color);
     background-color: transparent;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,11 +67,29 @@ body {
 }
 
 .board.is-oponent .board-cell:hover {
+    cursor: pointer;
     background-color: var(--primary-color);
+}
+
+.board.is-oponent .board-cell.is-hit,
+.board.is-oponent .board-cell.is-miss,
+.board.is-oponent.is-disabled {
+    pointer-events: none;
+}
+
+.board.is-oponent .board-cell.is-hit {
+    background-color: var(--primary-color);
+    box-shadow: inset 0 0 0 2px var(--background-color);
+    color: var(--background-color);
+}
+
+.board.is-oponent.is-disabled {
+    opacity: 0.5;
 }
 
 .board.is-player .board-cell.ship-cell {
     background-color: var(--primary-color);
+    box-shadow: inset 0 0 0 2px var(--background-color);
 }
 
 .board.is-player .board-cell.ship-cell.is-hit {
@@ -80,4 +103,68 @@ body {
     grid-row: 2 / 2;
     border: 2px solid var(--primary-color); 
     margin-top: 20px;
+}
+
+.battle-text textarea {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.battle-text textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.restart-game {
+    position: absolute;
+    border: 4px solid var(--primary-color);
+    background: var(--background-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    text-align: center;
+    display: none;
+    z-index: 99;
+}
+
+.restart-game.is-visible {
+    display: block;
+}
+
+.restart-game h1 {
+    margin-top: 0;
+}
+
+.restart-game button {
+    border: none;
+    font-family: 'Press Start 2P', cursive;
+    border: 2px solid var(--primary-color);
+    background: var(--background-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.restart-game button:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+}
+
+
+.restart-game button + button {
+    margin-left: 8px;
 }

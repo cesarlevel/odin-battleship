@@ -19,6 +19,13 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div id="app"></div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <filter id="hardBlur">
+                <feOffset result="offOut" in2="distort" in="SourceAlpha" dx="1" dy="1"></feOffset>
+                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1"></feGaussianBlur>
+                <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+            </filter>
+        </svg>
         <script src="./main.js" type="module" async defer></script>
     </body>
 </html>

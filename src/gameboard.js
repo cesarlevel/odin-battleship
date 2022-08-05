@@ -2,7 +2,8 @@ import Ship from './ship.js';
 export default class Gameboard {
     constructor() {
         this.boardLength = 10;
-        this.board = Array.from({length: this.boardLength}, () => Array(this.boardLength).fill(0));
+        this.board = [];
+        this.clearBoard();
         this.missAttacks = [];
         this.explotionChar = Ship.explotionChar;
         this.placedShips = [];
@@ -11,6 +12,38 @@ export default class Gameboard {
     }
 
     static missAttacksChar = '*';
+
+    addRandomShips() {
+        const random = () => Math.floor(Math.random() * 10);
+
+        const ships = [
+            new Ship(4),
+            new Ship(3),
+            new Ship(3),
+            new Ship(2),
+            new Ship(2),
+            new Ship(1),
+            new Ship(1),
+            new Ship(1),
+            new Ship(1),
+        ].map(ship => {
+            if (random() % 2 === 0) {
+                ship.changeDirection();
+            }
+            return ship;
+        });
+
+        while (ships.length) {
+            const placedShip = this.placeShip(ships[ships.length - 1], [random(), random()]);
+            if (placedShip) {
+                ships.splice(-1);
+            }
+        }
+    }
+
+    clearBoard() {
+        this.board = Array.from({length: this.boardLength}, () => Array(this.boardLength).fill(0));
+    }
 
     placeShip(ship, coords = [0, 0]) {
         const [row, col] = coords;
@@ -39,6 +72,7 @@ export default class Gameboard {
                 ship
             });
             this.alphaCounter++;
+            return true;
         } else {
             return false;
         }
