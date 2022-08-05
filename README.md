@@ -1,2 +1,5 @@
 # odin-battleship
-WIP game of battleship for the Odin project.
+The Odin project - Battleship
+
+[Live demo](https://cesarlevel.github.io/odin-battleship/)
+
