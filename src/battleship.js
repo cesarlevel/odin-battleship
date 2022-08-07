@@ -36,10 +36,10 @@ class Battleship {
                     this.view.toggleDisabledEnemyBoard();
                 }
                 if (dt >= this.previousDT + this.dtDelay) {
-                    const enemyAttack = this.enemy.attack();
-                    const [x, y] = enemyAttack;
-                    const successfullAttack = this.playerBoard.receiveAttack(enemyAttack);
+                    const [x, y] = this.enemy.attack();
+                    const successfullAttack = this.playerBoard.receiveAttack([x, y]);
                     this.view.updateBattleTextArea(`\n▶ Enemy attack: Row: ${Number(x) + 1}, Col: ${Number(y) + 1}`);
+
                     if (successfullAttack) {
                         this.view.updateBattleTextArea(`\n**** Player got hit! ****`);
                         this.previousDT += this.dtDelay;
@@ -59,11 +59,11 @@ class Battleship {
         });
     };
 
-    cellActionHandler(coord) {
-        const [x, y] = coord;
-        const successfullAttack = this.enemyBoard.receiveAttack(this.player.attack(coord))
+    cellActionHandler([x, y]) {
+        const successfullAttack = this.enemyBoard.receiveAttack(this.player.attack([x, y]))
         this.view.renderBoard(this.enemyBoard, false);
         this.view.updateBattleTextArea(`\n▶ Player attack: Row: ${Number(x) + 1}, Col: ${Number(y) + 1}`);
+        
         if (successfullAttack) {
             this.view.updateBattleTextArea(`\n**** Enemy got hit! ****`);
         } else {
