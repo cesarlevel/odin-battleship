@@ -42,13 +42,15 @@ class Battleship {
                     this.view.updateBattleTextArea(`\n▶ Enemy attack: Row: ${Number(x) + 1}, Col: ${Number(y) + 1}`);
                     if (successfullAttack) {
                         this.view.updateBattleTextArea(`\n**** Player got hit! ****`);
+                        this.previousDT += this.dtDelay;
+                    } else {
+                        this.player.changeTurn();
                     }
                     this.view.renderBoard(this.playerBoard);
-                    this.player.changeTurn();
                 }
             }
             if (this.playerBoard.allShipsDestroyed || this.enemyBoard.allShipsDestroyed) {
-                const message = this.enemyBoard.allShipsDestroyed ? 'You lose' : 'You win!';
+                const message = this.enemyBoard.allShipsDestroyed ? 'You win!' : 'You lose';
                 this.view.updateBattleTextArea(`\n**** ${message} ****`);
                 this.view.showRestartGameModal(message);
                 return;
@@ -64,6 +66,8 @@ class Battleship {
         this.view.updateBattleTextArea(`\n▶ Player attack: Row: ${Number(x) + 1}, Col: ${Number(y) + 1}`);
         if (successfullAttack) {
             this.view.updateBattleTextArea(`\n**** Enemy got hit! ****`);
+        } else {
+            this.player.changeTurn();
         }
         return coord;
     }

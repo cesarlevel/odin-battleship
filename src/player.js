@@ -10,7 +10,6 @@ export default class Player {
 
     attack(coords = [0, 0]) {
         this.attacks.push(coords);
-        this.changeTurn();
         return coords;
     }
 
