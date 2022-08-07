@@ -67,7 +67,7 @@ export class battleshipView {
 
     for (let i = 0; i < 100; i++) {
       const boardCell = boardCells[i];
-      if (flatBoard[i] && flatBoard[i].match(hasShipRegex)) {
+      if (flatBoard[i] && flatBoard[i].match(hasShipRegex) && isPlayer) {
         boardCell.classList.add('ship-cell');
       }
       
