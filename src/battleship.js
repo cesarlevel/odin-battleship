@@ -1,8 +1,8 @@
 import { battleshipView } from "./view.js";
 import Gameboard from "./gameboard.js";
-import Ship from "./ship.js";
 import Player from "./player.js";
 import Enemy from "./enemy.js";
+
 class Battleship {
     constructor() {
         this.playerBoard = new Gameboard();
